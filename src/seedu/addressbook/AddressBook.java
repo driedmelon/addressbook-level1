@@ -486,7 +486,10 @@ public class AddressBook {
         final ArrayList<String[]> matchedPersons = new ArrayList<>();
         for (String[] person : getAllPersonsInAddressBook()) {
             final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            String wordsInNameStr = wordsInName.toString(); //LO 1 Converted to string and compare without case
+            String keywordsStr = keywords.toString();
+            boolean check = wordsInNameStr.equalsIgnoreCase(keywordsStr);
+            if(check){
                 matchedPersons.add(person);
             }
         }
